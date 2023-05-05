@@ -1,0 +1,32 @@
+<h1 mat-dialog-title>Choosing Time Period</h1>
+<div mat-dialog-content> <strong>Choosing Time Period</strong><br/>
+  Several temporal aggregations of projected climate can be downloaded from this portal.
+  <br><br /><strong>Monthly Mean</strong><br/>
+    Monthly mean values are available for all variables and all SSPs/ all ensembles. You can select all months for 1
+  year or one month for a range of years.
+  <br><br /><strong>Annual Mean</strong><br/>
+    Annual mean values have been calculated from monthly model outputs. The values are averaged (or summed, for
+  precipitation) for the entire year (January-December) and show annual average climatological conditions.
+  <br><br /><strong>20-Year Mean</strong><br/>
+    20-year mean values have been calculated for both monthly and annual data. 20-year means &quot;smooth out&quot; single
+  extreme events. 20-year mean values are useful for analyzing long term climate trends.
+  <br><br/>To download a 20-year mean, enter the middle year in the 20-year time period. For example, by entering &quot;2050&quot;, you will
+  download the 20-year mean of 2040-2059.
+  <br><br /><strong>Anomaly</strong><br/>
+    Anomaly, in climate science, is a deviation of a meteorological variable from the normal (mean) value (here, we use
+  present day climate, 1995-2014, as the normal). Determining this anomaly is best accomplished by taking an average
+  over multiple ensemble members, and also by averaging over multiple years within each ensemble average. In climate
+  models, internal variability in the climate system is expressed both as year-to-year variability and as differences
+  between ensemble members. It is helpful to have a large number of data points included in the average for both the
+  present-day and future climates when computing an anomaly. For example, an anomaly can be calculated by comparing
+  (subtracting) an ensemble average of present-day climate simulations (i.e., Historical; 1995-2014) from an ensemble
+  average of future climate simulations (e.g., RCP 6.0; 2080-2099).
+  <br><br/>The anomalies have been computed for a multi-year mean of monthly and annual data.
+  <br><br/>To download a climate anomaly, enter start and end years. For example, by entering &quot;2050&quot; as both start year and end
+  year, you will download the climate anomaly between 2050 (2040-2059 mean) and the present day climate (1995-2014 mean).
+  By entering a range of years, for example, &quot;start year = 2050/end year = 2070&quot;, you will download 20 years of climate
+  anomalies, where each year is a 20-year mean compared to present day climate.
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close cdkFocusInitial>Close</button>
+</div>

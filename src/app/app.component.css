@@ -1,0 +1,181 @@
+body{
+  font-family: Optima,Lucida,'MgOpen Cosmetica','Lucida Sans Unicode',sans-serif;
+}
+.title{
+  font-size: 1.1em;
+  font-weight: normal;
+  /*text-align: center;*/
+  color: #556E96;
+  margin-bottom: 0.4em;
+}
+.data-collection-opt, .model-simulation-opt{
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0;
+}
+.data-collection-opt-button, .model-simulation-opt-button, .temporal-resolution-opt-button, .time-period-opt-button, .format-opt-button {
+  margin: 5px;
+}
+.temporal-resolution-opt, .time-period-opt, .format-opt {
+  margin: 15px 0;
+  display: flex;
+  flex-direction: row;
+}
+.start-year{
+  display:flex;
+  flex-direction: row;
+  margin: 15px 0;
+  max-width:50px;
+}
+.bbox{
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  margin: 15px 0;
+}
+.years {
+  display: flex;
+  flex-direction: row;
+}
+.years .start-year{
+  margin: 0;
+}
+.years .end-year{
+  margin: 0 100px;
+}
+.ensemble-member, .climate-variable, .time-period-months, .start-year, .end-year{
+  padding-top:1em;
+}
+.downscaled-asterisk{
+  font-size: 11px;
+  color: #FB7600;
+  margin-left: 20px;
+  text-decoration: none;
+}
+.downscaled-asterisk:hover{
+  text-decoration: underline;
+}
+.gcc-form-left{
+  float:left;
+  width:auto;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.gcc-form-right{
+  border-left: 2px solid #556E96;
+  float: right;
+  padding-left: 10px;
+  width: auto;
+}
+.gcc-section{
+  border: 1px dotted #BBBBBB;
+  padding: 1em 0em;
+  margin: 0 0 0.2em 0;
+  border-style: dotted none none;
+}
+.gcc-section-title{
+  font-weight: bold;
+  color: #556E96;
+}
+.bbox{
+  display: flex;
+  flex-direction: row;
+  width:100%;
+  justify-content: space-between;
+}
+.map{
+  width:380px;
+  height:300px;
+}
+.region{
+  width:50%;
+}
+.region-help, .temporal-asterisk{
+  font-size: 11px;
+}
+.time-period-help {
+  font-size: 11px;
+  margin-top:10px;
+}
+.region-help, .region-coords{
+  padding-left:150px;
+  height:100px;
+  margin-top:0;
+  float:left;
+  width:135px;
+}
+.global-extent-button{
+  margin: 0 150px;
+}
+.global-help, .downscaled-help, .climate-variable-help, .model-simulation-help, .ensemble-member-help, .temporal-resolution-help, .format-help{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+a{
+  text-decoration: underline;
+  color:#1c75bc;
+  cursor: pointer;
+  cursor: hand;
+}
+.downloadButton{
+  text-decoration: none;
+}
+.global-help a, .downscaled-help a{
+  margin-top:5px;
+}
+::ng-deep .mat-dialog-content{
+  font-size: 14px !important;
+}
+::ng-deep .leaflet-map-pane svg {
+  padding-left: 10px !important;
+}
+::ng-deep .mat-button{
+  background: #607d8b !important;
+}
+::ng-deep .mat-form-field-infix{
+  padding: 0.1em 0.75em 0.75em 0.75em !important;
+  border-top: 0.4em solid transparent !important;
+}
+::ng-deep .mat-form-field-appearance-fill .mat-select-arrow-wrapper{
+  transform: translateY(-30%) !important;
+}
+::ng-deep .climate-variable .mat-form-field-flex{
+  width: 350px;
+}
+::ng-deep .north .mat-form-field-flex,
+::ng-deep .south .mat-form-field-flex,
+::ng-deep .east .mat-form-field-flex,
+::ng-deep .west .mat-form-field-flex{
+  width: 116px;
+}
+::ng-deep .north .mat-form-field-wrapper,
+::ng-deep .south .mat-form-field-wrapper,
+::ng-deep .east .mat-form-field-wrapper,
+::ng-deep .west .mat-form-field-wrapper{
+  width: 116px;
+}
+::ng-deep .start-year .mat-form-field-flex,::ng-deep .end-year .mat-form-field-flex {
+  width: 100px;
+}
+::ng-deep .start-year .mat-form-field-wrapper, ::ng-deep .end-year .mat-form-field-wrapper{
+  width: 100px;
+}
+input[type="text"]{
+  border: 0 !important;
+  padding:0 !important;
+  color: black;
+}
+.mat-radio-button.mat-accent .mat-radio-inner-circle, .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple), .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple, .mat-radio-button.mat-accent:active .mat-radio-persistent-ripple{
+  background-color:blue !important;
+}
+.mat-button, .mat-icon-button, .mat-stroked-button{
+  background: #556E96 !important;
+}
+::ng-deep .mat-snack-bar-container{
+  white-space: pre-wrap;
+}
+::ng-deep .mat-radio-label-content{
+  font-weight: 200 !important;
+}
+

@@ -1,0 +1,307 @@
+<div class="gcc-form-left">
+  <div id="hiddenLink" style="display:none;"></div>
+  <!---------------STEP 1: Data Collection--------------->
+  <div class="gcc-section">
+    <span class="gcc-section-title">Step 1: Select Data Collection</span>
+    <div class="data-collection">
+      <mat-radio-group aria-label="Select an option" class="data-collection-opt" [(ngModel)]="dataCollection"
+                       (change)="resetMap($event)">
+        <div class="global-help">
+          <mat-radio-button class="data-collection-opt-button" value="global">Global (1 degree)</mat-radio-button>
+          <a (click)="openDialog('global')">Learn More</a>
+        </div>
+<!--        <div class="downscaled-help">-->
+<!--          <mat-radio-button class="data-collection-opt-button" value="downscaled">Continental US (4.5 km)-->
+<!--          </mat-radio-button>-->
+<!--          <a (click)="openDialog('downscaled')">Learn More</a>-->
+<!--        </div>-->
+<!--        <a class="downscaled-asterisk" href="http://gisclimatechange.ucar.edu/sites/default/files/users/Downscaling.pdf">*Statistically Downscaled</a>-->
+      </mat-radio-group>
+    </div>
+  </div>
+  <!---------------STEP 2: Climate Variable--------------->
+  <div class="gcc-section">
+    <div class="climate-variable-help">
+      <span class="gcc-section-title">Step 2: Select Climate Variable</span>
+      <a (click)="openDialog('climate-variable')">Learn More</a>
+    </div>
+    <div class="climate-variable">
+      <mat-form-field appearance="fill">
+        <select matNativeControl *ngIf="dataCollection==='global'" [(ngModel)]="selectedClimateVariable">
+          <option *ngFor="let cv of climateVariable" [value]="cv.value">
+            {{cv.viewValue}}
+          </option>
+        </select>
+        <select matNativeControl *ngIf="dataCollection==='downscaled'" [(ngModel)]="selectedClimateVariable">
+          <option *ngFor="let cv of [climateVariable[0], climateVariable[1]]" [value]="cv.value">
+            {{cv.viewValue}}
+          </option>
+        </select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!---------------STEP 3: Model Simulation--------------->
+  <div class="gcc-section">
+    <div class="model-simulation-help">
+      <span class="gcc-section-title">Step 3: Select Model Simulation</span>
+      <a (click)="openDialog('model-simulation')">Learn More</a>
+    </div>
+    <div class="model-simulation">
+      <mat-radio-group aria-label="Select an option" class="model-simulation-opt" [(ngModel)]="modelSimulation"
+                       (change)="changeOptions($event)">
+        <mat-radio-button class="model-simulation-opt-button" value="historical">Historical Climate Simulations
+          (1850-2014)
+        </mat-radio-button>
+        <mat-radio-button class="model-simulation-opt-button" value="ssp126">SSP 126 (2015-2100)</mat-radio-button>
+        <mat-radio-button class="model-simulation-opt-button" value="ssp245">SSP 245 (2015-2100)</mat-radio-button>
+        <mat-radio-button class="model-simulation-opt-button" value="ssp370">SSP 370 (2015-2100)</mat-radio-button>
+        <mat-radio-button class="model-simulation-opt-button" value="ssp585">SSP 585 (2015-2100)</mat-radio-button>
+      </mat-radio-group>
+    </div>
+  </div>
+  <!---------------STEP 4: Ensemble Member--------------->
+  <div class="gcc-section">
+    <div class="ensemble-member-help">
+      <span class="gcc-section-title">Step 4: Select Ensemble Member</span>
+      <a (click)="openDialog('ensemble-member')">Learn More</a>
+    </div>
+    <div class="ensemble-member">
+      <mat-form-field appearance="fill" (change)="changeOptions($event)">
+        <select matNativeControl [(ngModel)]="selectedEnsembleMember">
+          <option *ngFor="let em of ensembleMember" [value]="em.value">
+            {{em.viewValue}}
+          </option>
+        </select>
+      </mat-form-field>
+    </div>
+  </div>
+</div>
+
+<div class="gcc-form-right">
+  <!---------------STEP 5: Map--------------->
+  <div class="gcc-section">
+    <span class="gcc-section-title">Step 5: Select Region of Interest</span>
+    <div class="bbox">
+      <button class="global-extent-button" mat-raised-button color="primary" (click)="changeGlobal($event)"
+              *ngIf="globalButton === false && this.dataCollection === 'global'">Global Extent
+      </button>
+      <button class="global-extent-button" mat-raised-button color="primary" (click)="changeGlobal($event)"
+              *ngIf="globalButton === true && this.dataCollection === 'global'">Select Region
+      </button>
+    </div>
+    <div class="bbox">
+      <div class="region">
+        <div leaflet class="map" style="width: 380px; height: 300px;"
+             [leafletOptions]=checkGlobal() *ngIf="globalButton === false && dataCollection === 'global'">
+
+          <div *ngIf="shown === 'true' && globalButton === false"
+               leafletDraw
+               [leafletDrawOptions]="drawOptions"
+               (leafletDrawCreated)="onDrawCreated($event)"></div>
+          <div *ngIf="shown !== 'true' && globalButton === false"
+               leafletDraw
+               [leafletDrawOptions]="drawEdit"
+               (leafletDrawEdited)="onDrawEdited($event)"></div>
+          <div *ngIf="shown !== 'true' && globalButton === false"
+               leafletDraw
+               [leafletDrawOptions]="drawDelete"
+               (leafletDrawDeleted)="onDrawDeleted($event)"></div>
+          <div [leafletLayer]="drawnItems" *ngIf="globalButton === false"></div>
+        </div>
+        <!--Global Extent Clicked-->
+        <div leaflet class="map" style="width: 380px; height: 300px;"
+             [leafletOptions]=globalExtentOptions *ngIf="globalButton === true && dataCollection === 'global'">
+        </div>
+        <!--Continental US Downscaled Map-->
+        <div leaflet class="map" style="width: 380px; height: 300px;"
+             [leafletOptions]=checkGlobal() *ngIf="dataCollection !== 'global'">
+          <div *ngIf="shown === 'true' && globalButton === false"
+               leafletDraw
+               [leafletDrawOptions]="drawOptions"
+               (leafletDrawCreated)="onDrawCreated($event)"></div>
+          <div *ngIf="shown !== 'true' && globalButton === false"
+               leafletDraw
+               [leafletDrawOptions]="drawEdit"
+               (leafletDrawEdited)="onDrawEdited($event)"></div>
+          <div *ngIf="shown !== 'true' && globalButton === false"
+               leafletDraw
+               [leafletDrawOptions]="drawDelete"
+               (leafletDrawDeleted)="onDrawDeleted($event)"></div>
+          <div [leafletLayer]="drawnItems" *ngIf="globalButton === false"></div>
+        </div>
+      </div>
+
+      <div class="region">
+        <!--Help Text-->
+        <p class="region-help" *ngIf="dataCollection === 'global'">Global dataset is the default. To extract data for a
+          smaller region, please click on the square button on the map and draw a bounding box.</p>
+        <p class="region-help" *ngIf="dataCollection === 'downscaled'">Click on the square button on the map and draw a
+          bounding box 5 by 5 degrees max within the United States only.</p>
+        <!--Years Input-->
+        <div class="region-coords">
+          <mat-form-field class="west">
+            <mat-label>West</mat-label>
+            <input matInput type="text" [(ngModel)]="west">
+            <button mat-button *ngIf="west" matSuffix mat-icon-button aria-label="Clear" (click)="west=null">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+          <mat-form-field class="east">
+            <mat-label>East</mat-label>
+            <input matInput type="text" [(ngModel)]="east">
+            <button mat-button *ngIf="east" matSuffix mat-icon-button aria-label="Clear" (click)="east=null">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+          <mat-form-field class="south">
+            <mat-label>South</mat-label>
+            <input matInput type="text" [(ngModel)]="south">
+            <button mat-button *ngIf="south" matSuffix mat-icon-button aria-label="Clear" (click)="south=null">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+          <mat-form-field class="north">
+            <mat-label>North</mat-label>
+            <input matInput type="text" [(ngModel)]="north">
+            <button mat-button *ngIf="north" matSuffix mat-icon-button aria-label="Clear" (click)="north=null">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!---------------STEP 6: Temporal Resolution--------------->
+  <div class="gcc-section">
+    <div class="temporal-resolution-help">
+      <span class="gcc-section-title">Step 6: Select Temporal Resolution</span>
+      <a (click)="openDialog('temporal-resolution')">Learn More</a>
+    </div>
+    <div class="temporal-resolution">
+      <mat-radio-group aria-label="Select an option" class="temporal-resolution-opt" [(ngModel)]="temporalResolution"
+                       (change)="changeOptions($event)">
+        <mat-radio-button class="temporal-resolution-opt-button" value="monthly/mean">Monthly Mean</mat-radio-button>
+        <mat-radio-button class="temporal-resolution-opt-button" value="annual/mean"
+                          *ngIf="selectedEnsembleMember === 'ea' && (selectedClimateVariable === 'tas' || selectedClimateVariable === 'ppt')">Annual Mean
+        </mat-radio-button>
+        <mat-radio-button class="temporal-resolution-opt-button" value="longterm/average"
+                          *ngIf="selectedEnsembleMember === 'ea' && (selectedClimateVariable === 'tas' || selectedClimateVariable === 'ppt')">20-year Mean
+        </mat-radio-button>
+        <mat-radio-button class="temporal-resolution-opt-button" value="anomaly"
+                          *ngIf="modelSimulation !== 'historical' && selectedEnsembleMember === 'ea' && (selectedClimateVariable === 'tas' || selectedClimateVariable === 'ppt') ">Climate Anomaly*
+        </mat-radio-button>
+      </mat-radio-group>
+      <span class="temporal-asterisk" *ngIf="modelSimulation !== 'historical' && (selectedClimateVariable === 'tas' || selectedClimateVariable === 'ppt')">*All climate anomalies are relative to the reference period 1986-2005.</span>
+    </div>
+  </div>
+  <!---------------STEP 7: Time Period--------------->
+  <div class="gcc-section">
+    <span class="gcc-section-title">Step 7: Select Time Period</span>
+    <div class="time-period">
+      <!--Time Period Help Text. TODO: Remove duplicates, create a function that handles this-->
+      <p class="time-period-help" *ngIf="modelSimulation === 'historical' && temporalResolution === 'monthly/mean'">
+        Please
+        select a month, start year and end year. You may select:<br>
+        1. One month and a range of years between 1850 to 2014.<br>
+        2. All months for a range of years between 1850 to 2014.*<br>
+        * Interval may not exceed 20 years.</p>
+      <p class="time-period-help" *ngIf="modelSimulation === 'historical' && temporalResolution === 'annual/mean'">
+        Please
+        select a start year and end year between 1850 to 2014.</p>
+      <p class="time-period-help" *ngIf="modelSimulation === 'historical' && temporalResolution === 'longterm/average'">
+        Present day climate (1986-2014 mean)</p>
+      <p class="time-period-help" *ngIf="modelSimulation !== 'historical' && temporalResolution === 'monthly/mean'">
+        Please
+        select a month, start year and end year. You may select:<br>
+        1. One month and a range of years between 2015 to 2100.<br>
+        2. All months for a range of years between 2015 to 2100.*<br>
+        * Interval may not exceed 20 years.</p>
+      <p class="time-period-help" *ngIf="modelSimulation !== 'historical' && temporalResolution === 'annual/mean'">
+        Please
+        select a start year and end year between 2015 to 2100.</p>
+      <p class="time-period-help"
+         *ngIf="modelSimulation !== 'historical' && (temporalResolution === 'longterm/average' || temporalResolution === 'anomaly')">
+        Please
+        select a month, start year and end year. You may select:<br>
+        1. One month and a range of years between 2015 to 2091.<br>
+        2. All months for a range of years between 2015 to 2091.*<br>
+        * Interval may not exceed 10 years.</p>
+      <div class="period">
+        <!--  Optional Monthly/Annual Selection-->
+        <mat-radio-group aria-label="Select an option" class="time-period-opt"
+                         *ngIf="temporalResolution === 'longterm/average' || temporalResolution === 'anomaly'"
+                         [(ngModel)]="timePeriodOptions" (change)="changeOptions($event)">
+          <mat-radio-button class="time-period-opt-button" value="monthly">Monthly</mat-radio-button>
+          <mat-radio-button class="time-period-opt-button" value="annual">Annual</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <div class="month">
+        <!--Months Dropdown-->
+        <mat-form-field appearance="fill" class="time-period-months"
+                        *ngIf="temporalResolution !== 'annual/mean' && timePeriodOptions !== 'annual'">
+          <mat-label>Month</mat-label>
+          <select matNativeControl *ngIf="temporalResolution === 'monthly/mean' " [(ngModel)]="selectedTimePeriodMonth">
+            <option *ngFor="let tp of timePeriodMonth| slice:0:13" [value]="tp.value">
+              {{tp.viewValue}}
+            </option>
+            <!--Don't show All Months Option-->
+          </select>
+          <select matNativeControl
+            *ngIf="(temporalResolution === 'longterm/average' || temporalResolution === 'anomaly') && timePeriodOptions !== 'annual' "
+            [(ngModel)]="selectedTimePeriodMonth ">
+            <option *ngFor="let tp of timePeriodMonth| slice:1:13" [value]="tp.value">
+              {{tp.viewValue}}
+            </option>
+          </select>
+        </mat-form-field>
+      </div>
+
+      <div class="years">
+        <!--Years Input-->
+        <mat-form-field class="start-year"
+                        *ngIf="temporalResolution !== 'longterm/average' || modelSimulation !== 'historical'">
+          <mat-label>Start Year</mat-label>
+          <input matInput type="text" [(ngModel)]="startYear">
+          <button mat-button *ngIf="startYear" matSuffix mat-icon-button aria-label="Clear" (click)="startYear=null">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+        <mat-form-field class="end-year"
+                        *ngIf="temporalResolution !== 'longterm/average' || modelSimulation !== 'historical'">
+          <mat-label>End Year</mat-label>
+          <input matInput type="text" [(ngModel)]="endYear">
+          <button mat-button *ngIf="endYear" matSuffix mat-icon-button aria-label="Clear" (click)="endYear=null">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <!---------------STEP 8: File type and download--------------->
+  <div class="gcc-section">
+    <div class="format-help">
+      <span class="gcc-section-title">Step 8: Select File Type and Download</span>
+      <a (click)="openDialog('format')">Learn More</a>
+    </div>
+    <div class="format">
+      <mat-radio-group aria-label="Select an option" class="format-opt" [(ngModel)]="format">
+        <mat-radio-button class="format-opt-button" value=".shp">Shapefile</mat-radio-button>
+        <mat-radio-button class="format-opt-button" value=".gpkg">GeoPackage</mat-radio-button>
+        <mat-radio-button class="format-opt-button" value=".geojson">Geojson</mat-radio-button>
+        <mat-radio-button class="format-opt-button" value=".csv">Text File (csv)</mat-radio-button>
+      </mat-radio-group>
+    </div>
+<!--    <a class="downloadButton" mat-raised-button color="primary"-->
+<!--            (click)="validate($event, dataCollection, selectedClimateVariable, modelSimulation, temporalResolution, selectedEnsembleMember, timePeriodOptions, selectedTimePeriodMonth, startYear, endYear, format, north,south,east,west)" href={{downloadUrl}} >-->
+<!--      Download-->
+<!--    </a>-->
+    <a mat-raised-button color="primary" class="downloadButton" (click)="validate($event)" href={{downloadUrl}}>
+      Download
+    </a>
+
+<!--    <button mat-raised-button color="warn" (click)="postLogMessage('FromButton')">Post Log Message Only</button>-->
+  </div>
+</div>
+

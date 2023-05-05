@@ -1,0 +1,17 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+$gisclimatedata-primary: mat-palette($mat-blue-grey);
+$gisclimatedata-accent: mat-palette($mat-indigo);
+$gisclimatedata-warn: mat-palette($mat-blue);
+
+$gisclimatedata: mat-light-theme($gisclimatedata-primary, $gisclimatedata-accent, $gisclimatedata-warn);
+
+@include angular-material-theme($gisclimatedata);
+
+$custom-typography: mat-typography-config(
+  $font-family: 'Optima, Lucida',
+);
+@include mat-base-typography($custom-typography);
+@include angular-material-typography($custom-typography);

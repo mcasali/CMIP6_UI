@@ -1,0 +1,234 @@
+<h1 mat-dialog-title>Land and Atmosphere Variables</h1>
+<div mat-dialog-content>
+  <h3>Atmosphere Variables</h3>
+  <table width="100%" border="1" cellpadding="4" cellspacing="4">
+    <tbody>
+    <tr>
+      <td class="heading" align="center">Variable Description</td>
+      <td class="heading" align="center">Name</td>
+      <td class="heading" align="center">Units</td>
+      <td class="heading" align="center">Details</td>
+    </tr>
+    <tr class="row">
+      <td>Air Temperature</td>
+      <td>tas</td>
+      <td>C</td>
+      <td>Air temperature is the bulk temperature of the air, not the surface (skin) temperature.</td>
+    </tr>
+    <tr class="row">
+      <td>Precipitation Amount</td>
+      <td>ppt</td>
+      <td>mm</td>
+      <td>Monthly total precipitation. This variable has been downscaled from the CCSM-3 monthly mean precipitation flux (pr), using statistical downscaling method, and converted from flux units (kg m-2&gt; s-1) to millimeters.</td>
+    </tr>
+    <tr class="row">
+      <td>Precipitation Flux</td>
+      <td>pr</td>
+      <td>kg m-2</td>
+      <td>In accordance with common usage in geophysical disciplines, "flux" implies per unit area, called "flux density" in physics.</td>
+    </tr>
+    <tr class="row">
+      <td>Surface "Skin" Temperature</td>
+      <td>ts</td>
+      <td>K</td>
+      <td>The surface called "surface" means the lower boundary of the atmosphere. The surface temperature is the (skin) temperature at the interface, not the bulk temperature of the medium above or below.</td>
+    </tr>
+<!--    <tr class="row">-->
+<!--      <td>Maximum Air Temperature</td>-->
+<!--      <td>tasmin</td>-->
+<!--      <td>K</td>-->
+<!--      <td></td>-->
+<!--    </tr>-->
+<!--    <tr class="row">-->
+<!--      <td>Minimum Air Temperature</td>-->
+<!--      <td>tasmax</td>-->
+<!--      <td>K</td>-->
+<!--      <td></td>-->
+<!--    </tr>-->
+    <tr class="row">
+      <td>Sea Level Pressure</td>
+      <td>psl</td>
+      <td>Pa</td>
+      <td>Sea level means mean sea level, which is close to the geoid in sea areas. Air pressure at sea level is the quantity often abbreviated as MSLP or PMSL.</td>
+    </tr>
+    <tr class="row">
+      <td>Surface Air Pressure</td>
+      <td>ps</td>
+      <td>Pa</td>
+      <td>The surface called "surface" means the lower boundary of the atmosphere.</td>
+    </tr>
+<!--    <tr class="row" height="42">-->
+<!--      <td height="42">Condensed Water Path</td>-->
+<!--      <td>clwvi</td>-->
+<!--      <td>kg m-2</td>-->
+<!--      <td>"condensed_water" means liquid and ice. "Content" indicates a quantity per unit area. The "atmosphere content" of a quantity refers to the vertical integral from the surface to the top of the atmosphere. For the content between specified levels in the atmosphere, standard names including content_of_atmosphere_layer are used.</td>-->
+<!--    </tr>-->
+    <tr class="row">
+      <td>Convective Precipitation</td>
+      <td>prc</td>
+      <td>kg m-2 s-1</td>
+      <td>In accordance with common usage in geophysical disciplines, "flux" implies per unit area, called "flux density" in physics.</td>
+    </tr>
+    <tr class="row">
+      <td>Evaporation</td>
+      <td>evspsbl</td>
+      <td>kg m-2 s-1</td>
+      <td>at surface; flux of water into the atmosphere due to conversion of both liquid and solid phases to vapor (from underlying surface and vegetation)</td>
+    </tr>
+    <tr class="row">
+      <td>Fraction of Time Convection Occurs</td>
+      <td>ci</td>
+      <td>1</td>
+      <td>Fraction of time that shallow convection occurs in the grid cell.</td>
+    </tr>
+<!--    <tr class="row">-->
+<!--      <td>Fraction of Time Shallow Convection Occurs</td>-->
+<!--      <td>sci</td>-->
+<!--      <td>1</td>-->
+<!--      <td></td>-->
+<!--    </tr>-->
+    <tr class="row" height="38">
+      <td height="38">Ice Water Path</td>
+      <td>clivi</td>
+      <td>kg m-2</td>
+      <td>Mass of ice water in the column divided by the area of the column (not just the area of the cloudy portion of the column). Includes precipitating frozen hydrometeors ONLY if the precipitating hydrometeor affects the calculation of radiative transfer in the model.</td>
+    </tr>
+    <tr class="row">
+      <td>Relative Humidity</td>
+      <td>hur</td>
+      <td>%</td>
+      <td>This is the relative humidity with respect to liquid water for T&gt; 0C, and with respect to ice for T&lt; 0C.</td>
+    </tr>
+    <tr class="row">
+      <td>Near-Surface Specific Humidity</td>
+      <td>huss</td>
+      <td>1</td>
+      <td>Near-surface (usually, 2 meters) specific humidity; the CMOR singleton dimension default value of 2 m can be overridden, if absolutely necessary, by redefining axis "height1". </td>
+    </tr>
+    <tr class="row" height="82">
+      <td height="82">Net Downward Flux at Top of Model</td>
+      <td>rtmt</td>
+      <td>W m-2</td>
+      <td>Fluxes at the top_of_atmosphere_model differ from TOA fluxes only if the model TOA fluxes make some allowance for the atmosphere above the top of the model; if not, it is usual to give standard names with toa to the fluxes at the top of the model atmosphere. "Downward" indicates a vector component which is positive when directed downward (negative upward). Net downward radiation is the difference between radiation from above (downwelling) and radiation from below (upwelling). Radiative flux is the sum of shortwave and longwave radiative fluxes. In accordance with common usage in geophysical disciplines, "flux" implies per unit area, called "flux density" in physics.</td>
+    </tr>
+    <tr class="row">
+      <td>Snowfall Flux</td>
+      <td>prsn</td>
+      <td>kg m-2 s-1</td>
+      <td>In accordance with common usage in geophysical disciplines, "flux" implies per unit area, called "flux density" in physics.</td>
+    </tr>
+    <tr class="row" height="69">
+      <td height="69">Surface Downward Eastward Wind Stress</td>
+      <td>tauu</td>
+      <td>Pa</td>
+      <td>The surface called "surface" means the lower boundary of the atmosphere. "Eastward" indicates a vector component which is positive when directed eastward (negative westward). "Downward" indicates a vector component which is positive when directed downward (negative upward). "Downward eastward" indicates the ZX component of a tensor. A downward eastward stress is a downward flux of eastward momentum, which accelerates the lower medium eastward and the upper medium westward. The surface downward stress is the windstress on the surface.</td>
+    </tr>
+    <tr class="row" height="69">
+      <td height="69">Surface Downward Northward Wind Stress</td>
+      <td>tauv</td>
+      <td>Pa</td>
+      <td>The surface called "surface" means the lower boundary of the atmosphere. "Northward" indicates a vector component which is positive when directed northward (negative southward). "Downward" indicates a vector component which is positive when directed downward (negative upward). "Downward northward" indicates the ZY component of a tensor. A downward northward stress is a downward flux of northward momentum, which accelerates the lower medium northward and the upper medium southward. The surface downward stress is the windstress on the surface.</td>
+    </tr>
+    <tr class="row" height="96">
+      <td height="96">Surface Downwelling Clear-Sky Longwave Radiation</td>
+      <td>rldscs</td>
+      <td>W m-2</td>
+      <td>The surface called "surface" means the lower boundary of the atmosphere. A phrase assuming_condition indicates that the named quantity is the value which would obtain if all aspects of the system were unaltered except for the assumption of the circumstances specified by the condition. "longwave" means longwave radiation. Downwelling radiation is radiation from above. It does not mean "net downward". When thought of as being incident on a surface, a radiative flux is sometimes called "irradiance". In addition, it is identical with the quantity measured by a cosine-collector light-meter and sometimes called "vector irradiance". In accordance with common usage in geophysical disciplines, "flux" implies per unit area, called "flux density" in physics.</td>
+    </tr>
+    <tr class="row" height="109">
+      <td height="109">Surface Downwelling Clear-Sky Shortwave Radiation</td>
+      <td>rsdscs</td>
+      <td>W m-2</td>
+      <td>The surface called "surface" means the lower boundary of the atmosphere. A phrase assuming_condition indicates that the named quantity is the value which would obtain if all aspects of the system were unaltered except for the assumption of the circumstances specified by the condition. "shortwave" means shortwave radiation. Downwelling radiation is radiation from above. It does not mean "net downward". Surface downwelling shortwave is the sum of direct and diffuse solar radiation incident on the surface, and is sometimes called "global radiation". When thought of as being incident on a surface, a radiative flux is sometimes called "irradiance". In addition, it is identical with the quantity measured by a cosine-collector light-meter and sometimes called "vector irradiance". In accordance with common usage in geophysical disciplines, "flux" implies per unit area, called "flux density" in physics.</td>
+    </tr>
+    <tr class="row" height="69">
+      <td height="69">Surface Downwelling Longwave Radiation</td>
+      <td>rlds</td>
+      <td>W m-2</td>
+      <td>The surface called "surface" means the lower boundary of the atmosphere. "longwave" means longwave radiation. Downwelling radiation is radiation from above. It does not mean "net downward". When thought of as being incident on a surface, a radiative flux is sometimes called "irradiance". In addition, it is identical with the quantity measured by a cosine-collector light-meter and sometimes called vvector irradiance". In accordance with common usage in geophysical disciplines, "flux" implies per unit area, called "flux density" in physics.</td>
+    </tr>
+    <tr class="row" height="82">
+      <td height="82">Surface Downwelling Shortwave Radiation</td>
+      <td>rsds</td>
+      <td>W m-2</td>
+      <td>The surface called "surface" means the lower boundary of the atmosphere. "shortwavev means shortwave radiation. Downwelling radiation is radiation from above. It does not mean "net downward". Surface downwelling shortwave is the sum of direct and diffuse solar radiation incident on the surface, and is sometimes called "global radiation". When thought of as being incident on a surface, a radiative flux is sometimes called "irradiance". In addition, it is identical with the quantity measured by a cosine-collector light-meter and sometimes called "vector irradiance". In accordance with common usage in geophysical disciplines, "flux" implies per unit area, called vflux density" in physics.</td>
+    </tr>
+    <tr class="row">
+      <td>Surface Upward Latent Heat Flux</td>
+      <td>hfls</td>
+      <td>W m-2</td>
+      <td>Includes both evaporation and sublimation</td>
+    </tr>
+    <tr class="row">
+      <td>Surface Upward Sensible Heat Flux</td>
+      <td>hfss</td>
+      <td>W m-2</td>
+      <td></td>
+    </tr>
+    <tr class="row" height="96">
+      <td height="96">Surface Upwelling Clear-Sky Shortwave Radiation</td>
+      <td>rsuscs</td>
+      <td>W m-2</td>
+      <td>The surface called "surface" means the lower boundary of the atmosphere. A phrase assuming_condition indicates that the named quantity is the value which would obtain if all aspects of the system were unaltered except for the assumption of the circumstances specified by the condition. "shortwave" means shortwave radiation. Upwelling radiation is radiation from below. It does not mean "net upward". When thought of as being incident on a surface, a radiative flux is sometimes called "irradiance". In addition, it is identical with the quantity measured by a cosine-collector light-meter and sometimes called "vector irradiance". In accordance with common usage in geophysical disciplines, "flux" implies per unit area, called "flux density" in physics.</td>
+    </tr>
+    <tr class="row" height="69">
+      <td height="69">Surface Upwelling Longwave Radiation</td>
+      <td>rlus</td>
+      <td>W m-2</td>
+      <td>The surface called "surface" means the lower boundary of the atmosphere. "longwave" means longwave radiation. Upwelling radiation is radiation from below. It does not mean "net upward". When thought of as being incident on a surface, a radiative flux is sometimes called "irradiancev. In addition, it is identical with the quantity measured by a cosine-collector light-meter and sometimes called "vector irradiance". In accordance with common usage in geophysical disciplines, "flux" implies per unit area, called vflux density" in physics.</td>
+    </tr>
+    <tr class="row" height="69">
+      <td height="69">Surface Upwelling Shortwave Radiation</td>
+      <td>rsus</td>
+      <td>W m-2</td>
+      <td>The surface called "surface" means the lower boundary of the atmosphere. "shortwave" means shortwave radiation. Upwelling radiation is radiation from below. It does not mean "net upward". When thought of as being incident on a surface, a radiative flux is sometimes called "irradiance". In addition, it is identical with the quantity measured by a cosine-collector light-meter and sometimes called "vector irradiance". In accordance with common usage in geophysical disciplines, "flux" implies per unit area, called "flux density" in physics.</td>
+    </tr>
+    <tr class="row" height="42">
+      <td height="42">Top of Atmosphere Incident Shortwave Radiation</td>
+      <td>rsdt</td>
+      <td>W m-2</td>
+      <td>"shortwave" means shortwave radiation. "toa" means top of atmosphere. The TOA incoming shortwave flux is the radiative flux from the sun i.e. the "downwelling" TOA shortwave flux. In accordance with common usage in geophysical disciplines, "flux" implies per unit area, called "flux density" in physics.</td>
+    </tr>
+    <tr class="row" height="69">
+      <td height="69">Top of Atmosphere Outgoing Clear-Sky Longwave Radiation</td>
+      <td>rlutcs</td>
+      <td>W m-2</td>
+      <td>A phrase assuming condition indicates that the named quantity is the value which would obtain if all aspects of the system were unaltered except for the assumption of the circumstances specified by the condition. "longwave" means longwave radiation. "toa" means top of atmosphere. The TOA outgoing longwave flux is the upwelling thermal radiative flux, often called the "outgoing longwave radiation" or "OLR". In accordance with common usage in geophysical disciplines, "flux" implies per unit area, called "flux density" in physics.</td>
+    </tr>
+    <tr class="row" height="82">
+      <td height="82">Top of Atmosphere Outgoing Clear-Sky Shortwave Radiation</td>
+      <td>rsutcs</td>
+      <td>W m-2</td>
+      <td>A phrase assuming condition indicates that the named quantity is the value which would obtain if all aspects of the system were unaltered except for the assumption of the circumstances specified by the condition. "shortwave" means shortwave radiation. "toa" means top of atmosphere. The TOA outgoing shortwave flux is the reflected and scattered solar radiative flux i.e. the "upwelling" TOA shortwave flux, sometimes called the "outgoing shortwave radiation" or "OSR". In accordance with common usage in geophysical disciplines, "flux" implies per unit area, called "flux density" in physics.</td>
+    </tr>
+    <tr class="row" height="42">
+      <td height="42">Top of Atmosphere Outgoing Longwave Radiation</td>
+      <td>rlut</td>
+      <td>W m-2</td>
+      <td>"Longwave" means longwave radiation. "toa" means top of atmosphere. The TOA outgoing longwave flux is the upwelling thermal radiative flux, often called the "outgoing longwave radiation" or "OLR". In accordance with common usage in geophysical disciplines, "flux" implies per unit area, called "flux density" in physics.</td>
+    </tr>
+    <tr class="row">
+      <td>Top of Atmosphere Outgoing Shortwave Radiation</td>
+      <td>rsut</td>
+      <td>W m-2</td>
+      <td>"Shortwave" means shortwave radiation. "toa" means top of atmosphere. The TOA outgoing shortwave flux is the reflected and scattered solar radiative flux i.e. the "upwelling" TOA shortwave flux, sometimes called the "outgoing shortwave radiation" or "OSR". In accordance with common usage in geophysical disciplines, "flux" implies per unit area, called "flux density" in physics.</td>
+    </tr>
+    <tr class="row">
+      <td>Total Cloud Fraction</td>
+      <td>clt</td>
+      <td>%</td>
+      <td>for the whole atmospheric column, as seen from the surface or the top of the atmosphere. Includes both large-scale and convective clouds.</td>
+    </tr>
+    <tr class="row">
+      <td>Water Vapor Path</td>
+      <td>prw</td>
+      <td>kg m-2</td>
+      <td>"Content" indicates a quantity per unit area. The "atmosphere content" of a quantity refers to the vertical integral from the surface to the top of the atmosphere. For the content between specified levels in the atmosphere, standard names including content_of_atmosphere_layer are used. Atmosphere water vapor content is sometimes referred to as "precipitable water", although this term does not imply the water could all be precipitated.</td>
+    </tr>
+
+    </tbody>
+  </table>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close cdkFocusInitial>Close</button>
+</div>

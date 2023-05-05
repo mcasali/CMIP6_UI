@@ -1,0 +1,5 @@
+name = GIS Climate Data v2.0
+description = Module provides a hook to include an html/Angular website developed outside of Drupal, which allows users to download GIS Climate Change data from UCAR servers.
+core = 7.x
+package = GIS Climate Change
+files[] = gis_climatedata.module

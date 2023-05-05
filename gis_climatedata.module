@@ -1,0 +1,82 @@
+<?php
+/**
+ *
+ * Provides a hook to include an html/jquery website developed outside of Drupal, which allows
+ * users to download GIS AR5 data - v7.x-2.0 Angular Leaflet version
+ */
+
+/**
+ * Implements hook_permission().
+*/
+function gis_climatedata_permission() {
+  return array(
+    'administer gis_climatedata' => array('title' => t('Administer module')),
+    'use gis_climatedata'        => array('title' => t('Download ar5 climate data')),
+    'access gis_climatedata log' => array('title' => t('View data access log')),
+  );
+}
+
+
+/**
+ * Implements hook_menu().
+ */
+
+function gis_climatedata_menu() {
+  $items['gis_climatedata'] = array(
+    'title' => 'AR5 Climate Data',
+    'type' =>  MENU_NORMAL_ITEM,
+    'description' => 'Climate projection interactive map and graphs',
+    'page callback' => 'gis_climatedata_content',
+    'access callback' => TRUE, // Always show menu item, check user_access()
+                               // in page callback. This way the menu item is
+                               // visible, even though user may not have access.
+	//'access arguments' => array('access gis_climatedata'),
+  );
+  return $items;
+}
+
+
+function gcc_data_ar5_request_page() {
+    if (user_access('use gcc_data_ar5')) {
+        drupal_set_title(t("Download NCAR Community Climate System Model (CCSM) projections in GIS formats"));
+
+        $content = array();
+        $content[] = array('#markup' => _gcc_data_ar5_get_map(),);
+        $content[] = drupal_get_form('gcc_data_ar5_request_form');
+
+        drupal_add_css(drupal_get_path('module', 'gcc_data_ar5') . '/css/gcc_data_ar5.css', array('type' => 'file'));
+        drupal_add_library('system', 'ui.dialog');
+        drupal_add_js(drupal_get_path('module', 'gcc_data_ar5') . '/js/map_selector.js');
+        drupal_add_js(drupal_get_path('module', 'gcc_data_ar5') . '/js/gcc_data_ar5.js');
+    } elseif (!user_is_logged_in() && variable_get('gis_climatedata_login_prompt', FALSE)) {
+        $content = drupal_get_form('user_login');
+    } else {
+        return MENU_ACCESS_DENIED;
+    }
+
+    return $content;
+}
+
+
+
+
+function gis_climatedata_content() {
+if (user_access('use gis_climatedata')) {
+	drupal_set_title(t("Download NCAR Community Climate System Model (CCSM) projections in GIS formats"));
+
+	drupal_add_css('https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap', array('type' => 'external'));
+	drupal_add_css('https://fonts.googleapis.com/icon?family=Material+Icons', array('type' => 'external'));
+	drupal_add_css(drupal_get_path('module', 'gis_climatedata') . '/dist/GISClimateData/styles.7b388a200bf5da6f6107.css');
+	drupal_add_js(drupal_get_path('module', 'gis_climatedata') . '/dist/GISClimateData/runtime.acf0dec4155e77772545.js');
+	drupal_add_js(drupal_get_path('module', 'gis_climatedata') . '/dist/GISClimateData/polyfills.35a5ca1855eb057f016a.js');
+	drupal_add_js(drupal_get_path('module', 'gis_climatedata') . '/dist/GISClimateData/main.04d740e0fd71137299df.js');
+
+	  $content = file_get_contents(drupal_get_path('module', 'gis_climatedata') . '/dist/GISClimateData/index.html');
+	  if ($content===false) {$content="file not found";}
+   } elseif (!user_is_logged_in() && variable_get('gcc_data_ar5_login_prompt', FALSE)) {
+        $content = drupal_get_form('user_login');
+    } else {
+        return MENU_ACCESS_DENIED;
+    }
+  return $content;
+}
