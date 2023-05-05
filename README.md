@@ -1,15 +1,5 @@
-# GISClimateData
-Written by Nhi Nguyen
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.2.
-
-[Main repository for edits found here](https://github.com/NCAR/RAL_GIS_Data_Converter). Instructions for build found in this repo.
-
-This RAL_drupal_gis_climatedata repository is for the Web Dev team, though the only important files live in dist/GISClimateData.
-- The dist folder gets dropped into user@faraday:/www/virtual/gisclimatechange-dev/drupal/sites/default/modules/gis_climatedata and user@faraday:/www/virtual/gisclimatechange/drupal/sites/default/modules/gis_climatedata
-- There is an includes/main.css file for small edits to the UI.
-- Must correct gis_climatedata.module to point to the correct paths for the dist/GISClimateData filename changes. The {random-hash} in main.{random-hash}.js get changed when a software engineer builds it in the other GitHub repo linked above.
-
+# GISClimateData CMIP6 UI
+Written by Nhi Nguyen, Updated by Matthew Casali
 
 ## Development server
 
