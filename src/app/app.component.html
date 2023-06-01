@@ -7,14 +7,15 @@
       <mat-radio-group aria-label="Select an option" class="data-collection-opt" [(ngModel)]="dataCollection"
                        (change)="resetMap($event)">
         <div class="global-help">
-          <mat-radio-button class="data-collection-opt-button" value="global">Global (1 degree)</mat-radio-button>
+          <mat-radio-button class="data-collection-opt-button"  value="global">Global (1 degree)</mat-radio-button>
           <a (click)="openDialog('global')">Learn More</a>
         </div>
-<!--        <div class="downscaled-help">-->
-<!--          <mat-radio-button class="data-collection-opt-button" value="downscaled">Continental US (4.5 km)-->
-<!--          </mat-radio-button>-->
+        <div class="downscaled-help">
+          <mat-radio-button class="data-collection-opt-button" value="downscaled" disabled>Continental US (4.5 km)
+          </mat-radio-button>
 <!--          <a (click)="openDialog('downscaled')">Learn More</a>-->
-<!--        </div>-->
+        </div>
+        <h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Currently unavailable)</h5>
 <!--        <a class="downscaled-asterisk" href="http://gisclimatechange.ucar.edu/sites/default/files/users/Downscaling.pdf">*Statistically Downscaled</a>-->
       </mat-radio-group>
     </div>
