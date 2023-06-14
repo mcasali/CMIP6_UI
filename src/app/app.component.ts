@@ -433,7 +433,7 @@ export class AppComponent {
       // Common url parts
       //https://tds.gisclimatechange.ucar.edu/products/
       //'http://128.117.14.70:5000/products/'
-      const baseurl = 'http://compass.rap.ucar.edu:82/products/' + this.dataCollection + '/' + this.selectedClimateVariable + '/' + this.modelSimulation + '/' + this.temporalResolution;
+      const baseurl = 'http://cmip6converter.rap.ucar.edu/products/' + this.dataCollection + '/' + this.selectedClimateVariable + '/' + this.modelSimulation + '/' + this.temporalResolution;
       const urlArray = [baseurl];
       // For Monthly Mean, include Run (ensemble average, run1, run2, ...)
       if (this.temporalResolution === 'monthly/mean'){
